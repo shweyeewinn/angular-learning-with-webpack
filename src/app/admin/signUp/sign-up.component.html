@@ -1,0 +1,69 @@
+<div class="row">
+  <form>
+    <div class="grid-container">
+      
+      <div class="grid-container fluid">
+        
+        <div class="grid-x grid-margin-x">
+          <div class="cell small-12 small-offset-0 medium-6 medium-offset-3 align-center">
+            <h1 class="head-line">Register an Account</h1>
+          </div>
+        </div>
+
+        <div class="grid-x grid-margin-x">
+          <div class="cell small-12 small-offset-0 medium-6 medium-offset-3">
+            <label>Username
+              <input type="text" placeholder="Enter Email Address" id="email" 
+                  [(ngModel)]="email" name="email" required #em="ngModel">
+                <div [hidden]="em.valid || em.pristine" class="alert callout">
+                    Email is required
+                </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="grid-x grid-margin-x">
+          <div class="cell small-12 small-offset-0 medium-6 medium-offset-3">
+            <label>Password
+              <input type="password" placeholder="Enter Password" id="password1" 
+                  [(ngModel)]="password1" name="password1" required #pwd1="ngModel">
+              <div [hidden]="pwd1.valid || pwd1.pristine" class="alert callout">
+                Password required
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="grid-x grid-margin-x">
+          <div class="cell small-12 small-offset-0 medium-6 medium-offset-3">
+            <label>Confirm Password
+              <input type="password" placeholder="Confirm Password" id="password2" 
+                  [(ngModel)]="password2" name="password2" required #pwd2="ngModel">
+              <div [hidden]="pwd2.valid || pwd2.pristine" class="alert callout">
+                Confirm Password
+              </div>
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="grid-container fluid">
+        <div class="grid-x grid-margin-x">
+          <div *ngIf="passwordFail" class="alert callout">
+            Passwords Do Not Match
+          </div>
+          <div class="cell small-12 small-offset-0 medium-6 medium-offset-3">
+            <div class="button-group">
+              <a class="success button" (click)="signUp()">Sign Up</a>
+              <a class="cancel button" (click)="cancel()">Cancel</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+

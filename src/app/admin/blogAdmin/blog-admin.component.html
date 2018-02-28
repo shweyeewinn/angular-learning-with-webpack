@@ -1,0 +1,108 @@
+<div class="top-bar">
+    <div class="top-bar-title">
+        <a [routerLink]="['/']">GGC Admin area</a>
+    </div>
+
+    <div class="top-bar-left">
+        <ul class="menu">
+            <li class="admin-menu"><a (click)="chooseMode('add')">Add Post</a></li>
+            <li *ngIf = "menuChoice" class="admin-menu"><a (click)="chooseMode('')">Manage Blogs</a></li>
+            <li class="admin-menu"><a [routerLink]="['/admin']">Back to Admin</a></li>
+        </ul>
+    </div>
+    <div *ngIf = "theUser" class="top-bar-right">
+        <ul class="menu">
+            <li class="admin-menu"><a (click)="logout()">Logout</a></li>
+            <li class="admin-menu"><a>{{theUser}} Logged in</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<div [ngSwitch]="menuChoice">
+    <div *ngSwitchCase="'add'"><add-menu></add-menu></div>
+
+    <div *ngSwitchDefault>
+
+        <div class="grid-container">
+        
+            <div *ngIf = "formDisplay" class="row">
+                <div class="row" *ngFor="let posts of blogPosts">
+                   
+                    <div class="row spacer">
+    	                <div class="media-object">
+    		                <div class="media-object-section">
+            		            <div class="align-self-middle">
+                    		        <img class="mini-img" [src]= "posts.img">
+                     	        </div>
+                  	        </div>
+                            <div class="media-object-section main-section">
+                                <h4>{{posts.title}}</h4>
+                                <p>{{posts.content | truncate:140}}</p>
+                                <div class="button-group align-left">
+                                    <a class="button" (click)="editPost(posts)" >Edit</a>
+                                    <a class="button alert" (click)="deletePost(posts)">Delete</a>
+                                </div>
+                            </div>
+
+       	                </div>
+                    </div>   
+
+                </div>
+            </div>
+
+            <div *ngIf = "!formDisplay" class="row">
+                
+                <form >
+
+                    <div class="grid-container fluid">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell small-12 medium-12">
+                                <h3>Edit Post</h3>
+                            </div>
+                            <div class="cell small-12 medium-12">
+                                <label>Post Title
+                                    <input type="text" [(ngModel)]="singlePost.title" 
+                                        name="editTitle" required #psTitle="ngModel">
+                                </label>
+                            </div>
+                            <div class="cell small-12 medium-12">
+                                <label>Post Content
+                                    <textarea rows="15" id="content" [(ngModel)]="singlePost.content" 
+                                        name="editcontent" required #psContent="ngModel"></textarea>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-container fluid">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell small-12 medium-6 align-left padding-top-10 padding-bottom-10">
+                                <label>Post Image</label>
+                                <img class="img-responsive" [src] = "singlePost.img" alt="Image preview...">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="grid-container fluid">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell small-12 medium-12">
+                                <div class="button-group">
+                                    <button class="success button " type="button" [disabled]="!psTitle.valid || !psContent.valid" 
+                                        (click)="updatePost(singlePost)">Update Post</button>
+                                    <button class="cancel button" type="button" (click)="cancelEdit()">Cancel Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                      
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

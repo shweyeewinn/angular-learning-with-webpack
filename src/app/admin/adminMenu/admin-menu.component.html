@@ -1,0 +1,32 @@
+<div class="top-bar">
+    <div class="top-bar-title">
+        <a [routerLink]="['/']">GigaByte Gaming Company</a>
+    </div>
+
+    <div class="top-bar-left">
+        <ul class="menu">
+            <li class="admin-menu"><a [routerLink]="['/admin/blog-admin']">Manage Blog</a></li>
+        </ul>
+    </div>
+    <div *ngIf = "theUser" class="top-bar-right">
+        <ul class="menu">
+            <li class="admin-menu"><a (click)="logout()">Logout</a></li>
+            <li class="admin-menu"><a>{{theUser}} Logged in</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="row">
+  <img src="../adminShared/images/code.jpg">
+</div>
+
+
+<div class="grid-container">
+    <div class="grid-x grid-margin-x">
+        <div class="cell small-12 medium-12">
+            <h1 class="head-line">Welcome to the Admin Area for the Gigabyte gaming Company.</h1>
+            <h3>This area is for authorized users only!</h3>
+        </div>
+    </div>
+</div>

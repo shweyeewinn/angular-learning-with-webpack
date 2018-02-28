@@ -1,0 +1,33 @@
+.top-bar-title {
+    font-size: 22px;
+    color: #ffffff;
+}
+
+.admin-menu a {
+    color: #ffffff;
+}
+
+.mini-img {
+    height: auto;
+    width: 200px;
+}
+
+.spacer {
+    padding-top: 20px;
+    border-top: solid 1px #000000;
+   
+}
+.spacer:nth-child(1) {
+	border-top: 0px;
+}
+.align-center {
+	text-align: center;
+}
+img.img-responsive {
+    width: 100%;
+    height: auto;
+}
+.align-self-middle {
+    height: 150px;
+    overflow-y: hidden;
+}
